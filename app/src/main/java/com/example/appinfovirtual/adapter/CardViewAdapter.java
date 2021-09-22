@@ -1,6 +1,7 @@
 package com.example.appinfovirtual.adapter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appinfovirtual.R;
+import com.example.appinfovirtual.view.ImageDetailActivity;
 
+import java.net.CookieHandler;
 import java.util.ArrayList;
 
 public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.CardViewHolder> {
@@ -20,6 +23,7 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.CardVi
     private ArrayList<Image> images;
     private int resource;
     private Activity activity;
+    private CookieHandler Picasso;
 
     public CardViewAdapter(ArrayList<Image> images, int resource, Activity activity) {
         this.images = images;
@@ -39,10 +43,19 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.CardVi
     public void onBindViewHolder(@NonNull CardViewHolder holder, int position) {
         Image image = images.get(position);
         //image
-
+        Picasso.get().load(image.getClass()).into(holder.imageCardView);
         holder.usernameCardView.setText(image.getFormat());
         holder.cantidadDiasView.setText(image.getFormat());
         holder.cantidadMeGustaCardView.setText(image.getFormat());
+
+        //onclicklistener
+        holder.imageCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(activity, ImageDetailActivity.class);
+                activity.startActivity(intent);
+            }
+        });
     }
 
     @Override

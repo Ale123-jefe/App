@@ -102,7 +102,7 @@ public class HomeFragment extends Fragment {
 
 
     //creamos la lista de imagenes
-    public ArrayList<Image> buidImages(){
+    public ArrayList<Image> buidImages() {
         ArrayList<Image> images = new ArrayList<>();
 
         images.add(new Image("","Carlos Valdivia", "2 dias","5 me gusta"));
